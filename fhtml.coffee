@@ -1,11 +1,12 @@
-tag = (tagName) -> (text) ->
-  "<#{tagName}>#{text}</#{tagName}>"
-
+createTag = (tagName) -> (text) -> "<#{tagName}>#{text}</#{tagName}>"
 tags = ['p', 'div']
-fhtml = {}
 
-for tagName in tags
-  fhtml[tagName] = tag(tagName)
+fhtml = (tagGenerator) ->
+  for tagName in tags
+    @[tagName] = createTag(tagName)
+  boundTagGenerator = tagGenerator.bind @
+  tag = boundTagGenerator()
+  return tag
 
 if window? then window.fhtml = fhtml
 if module? then module.exports = fhtml
