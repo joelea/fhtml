@@ -1,0 +1,17 @@
+{
+  "name": "fhtml",
+  "version": "0.0.0",
+  "authors": [
+    "joeleapublic@gmail.com"
+  ],
+  "description": "javascript DSL for HTML generation",
+  "main": "fhtml.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
