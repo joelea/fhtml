@@ -14,5 +14,10 @@ describe 'fhtml', ->
     html =
       T.div ->
         T.p 'nested tag'
-
     assert.equal html, '<div><p>nested tag</p></div>'
+
+  it 'can add attributes', ->
+    html =
+      T.a { href: 'a link' }, 'link text'
+
+    assert.equal html, '<a href=\'a link\'>link text</a>'

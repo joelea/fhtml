@@ -1,14 +1,25 @@
-tags = ['p', 'div']
+tags = ['p', 'div', 'a']
 
 isFunction = (object) ->
   getType = {}
   return object &&
          getType.toString.call(object) == '[object Function]';
 
+formatAttributes = (attributes) ->
+  return "" unless attributes?
+  formattedAttributes = []
+  formattedAttributes.push("#{key}='#{value}'") for key, value of attributes
+  return ' ' + formattedAttributes.join(' ')
+
+createTag = (tagName) -> (content, attributes) ->
+    if isFunction(content) then content = content()
+    formattedAttributes = formatAttributes attributes
+    "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
+
 createTagFunction = (tagName, bindTarget) ->
-  bindTarget[tagName] = (text) ->
-    if isFunction(text) then text = text()
-    "<#{tagName}>#{text}</#{tagName}>"
+  bindTarget[tagName] = (args...) ->
+    reversedArgs = args.reverse()
+    createTag(tagName)(reversedArgs...)
 
 T = {}
 
