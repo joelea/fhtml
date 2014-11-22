@@ -41,6 +41,12 @@ describe 'fhtml', ->
             'content'
     assert.equal html, "<div id='idName'>content</div>"
 
+  it 'can add multiple ids with shorthand', ->
+    html =
+      T.div '#idName#idName2',
+            'content'
+    assert.equal html, "<div id='idName idName2'>content</div>"
+
   it 'can add an id and a class with shorthand', ->
     html =
       T.div '#idName.className',

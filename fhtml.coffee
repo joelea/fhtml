@@ -13,8 +13,8 @@ formatAttributes = (attributes) ->
 
 
 attributify = (selector) ->
-  classes = selector.match(/\.\w+/)?.map (name) -> name[1..]
-  ids = selector.match(/#\w+/)?.map (name) -> name[1..]
+  classes = selector.match(/\.\w+/g)?.map (name) -> name[1..]
+  ids = selector.match(/#\w+/g)?.map (name) -> name[1..]
   attributes = {}
   if ids? then attributes.id = ids.join(' ')
   if classes? then attributes.class = classes.join(' ')
