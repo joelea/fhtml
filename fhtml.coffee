@@ -21,11 +21,11 @@ attributify = (selector) ->
   return attributes
 
 createTag = (tagName) -> (content, attributes, selector='') ->
-    if isFunction(content) then content = content()
-    if typeof attributes is 'string' then attributes = attributify(attributes)
-    attributes[key] = value for key, value of attributify(selector)
-    formattedAttributes = formatAttributes attributes
-    "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
+  if isFunction(content) then content = content()
+  if typeof attributes is 'string' then attributes = attributify(attributes)
+  attributes[key] = value for key, value of attributify(selector)
+  formattedAttributes = formatAttributes attributes
+  "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
 
 createTagFunction = (tagName, bindTarget) ->
   bindTarget[tagName] = (args...) ->
