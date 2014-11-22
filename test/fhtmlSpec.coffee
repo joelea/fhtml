@@ -46,3 +46,12 @@ describe 'fhtml', ->
             'content'
     assert.equal html,
                  "<div attr='value' id='idName'>content</div>"
+
+ it 'can use multiple explicit attributes', ->
+    html =
+      T.div '#idName',
+            attr: 'value',
+            attr2: 'value2',
+            'content'
+    assert.equal html,
+                 "<div attr='value' attr2='value2' id='idName'>content</div>"
