@@ -5,15 +5,14 @@ isFunction = (object) ->
   return object &&
          getType.toString.call(object) == '[object Function]';
 
-class HTML
-  _createTagFunction: (tagName) =>
-    @[tagName] = (text) =>
-      if isFunction(text) then text = text()
-      "<#{tagName}>#{text}</#{tagName}>"
+createTagFunction = (tagName, bindTarget) ->
+  bindTarget[tagName] = (text) ->
+    if isFunction(text) then text = text()
+    "<#{tagName}>#{text}</#{tagName}>"
 
-  constructor: ->
-    @_createTagFunction(tagName) for tagName in tags
+T = {}
 
+createTagFunction(tag, T) for tag in tags
 
-if window? then window.fhtml = new HTML()
-if module? then module.exports = new HTML()
+if window? then window.T = T
+if module? then module.exports = T
