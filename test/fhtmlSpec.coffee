@@ -16,6 +16,14 @@ describe 'fhtml', ->
         T.p 'nested tag'
     assert.equal html, '<div><p>nested tag</p></div>'
 
+  it 'should be able to use multiple inner tags', ->
+    html =
+      T.div -> [
+        T.p 'nested tag'
+        T.p 'another nested tag'
+      ]
+    assert.equal html, '<div><p>nested tag</p><p>another nested tag</p></div>'
+
   it 'can add attributes', ->
     html =
       T.a { href: 'a link' }, 'link text'

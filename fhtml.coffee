@@ -20,8 +20,14 @@ attributify = (selector) ->
   if classes? then attributes.class = classes.join(' ')
   return attributes
 
-createTag = (tagName) -> (content, attributes, selector='') ->
+
+getRawContent = (content) ->
   if isFunction(content) then content = content()
+  if Array.isArray(content) then content = content.join('')
+  return content
+
+createTag = (tagName) -> (content, attributes, selector='') ->
+  content = getRawContent(content)
   if typeof attributes is 'string' then attributes = attributify(attributes)
   attributes[key] = value for key, value of attributify(selector)
   formattedAttributes = formatAttributes attributes
