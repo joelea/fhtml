@@ -11,9 +11,18 @@ formatAttributes = (attributes) ->
   formattedAttributes.push("#{key}='#{value}'") for key, value of attributes
   return ' ' + formattedAttributes.join(' ')
 
+
+attributify = (selector) ->
+  classes = selector.match(/\.\w+/)?.map (name) -> name[1..]
+  ids = selector.match(/#\w+/)?.map (name) -> name[1..]
+  attributes = {}
+  if ids? then attributes.id = ids.join(' ')
+  if classes? then attributes.class = classes.join(' ')
+  return attributes
+
 createTag = (tagName) -> (content, attributes) ->
     if isFunction(content) then content = content()
-    if typeof attributes is 'string' then attributes = class: attributes[1..]
+    if typeof attributes is 'string' then attributes = attributify attributes
     formattedAttributes = formatAttributes attributes
     "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
 
