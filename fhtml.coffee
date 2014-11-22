@@ -13,6 +13,7 @@ formatAttributes = (attributes) ->
 
 createTag = (tagName) -> (content, attributes) ->
     if isFunction(content) then content = content()
+    if typeof attributes is 'string' then attributes = class: attributes[1..]
     formattedAttributes = formatAttributes attributes
     "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
 

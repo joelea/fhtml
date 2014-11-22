@@ -20,4 +20,9 @@ describe 'fhtml', ->
     html =
       T.a { href: 'a link' }, 'link text'
 
-    assert.equal html, '<a href=\'a link\'>link text</a>'
+  it 'can add a class with shorthand', ->
+    html =
+      T.div '.className',
+            'content'
+
+    assert.equal html, "<div class='className'>content</div>"
