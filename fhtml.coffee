@@ -20,9 +20,10 @@ attributify = (selector) ->
   if classes? then attributes.class = classes.join(' ')
   return attributes
 
-createTag = (tagName) -> (content, attributes) ->
+createTag = (tagName) -> (content, attributes, selector='') ->
     if isFunction(content) then content = content()
-    if typeof attributes is 'string' then attributes = attributify attributes
+    if typeof attributes is 'string' then attributes = attributify(attributes)
+    attributes[key] = value for key, value of attributify(selector)
     formattedAttributes = formatAttributes attributes
     "<#{tagName}#{formattedAttributes}>#{content}</#{tagName}>"
 

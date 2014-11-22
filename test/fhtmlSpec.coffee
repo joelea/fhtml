@@ -38,3 +38,11 @@ describe 'fhtml', ->
       T.div '#idName.className',
             'content'
     assert.equal html, "<div id='idName' class='className'>content</div>"
+
+  it 'can use both explicit and shorthand attributes', ->
+    html =
+      T.div '#idName',
+            attr: 'value',
+            'content'
+    assert.equal html,
+                 "<div attr='value' id='idName'>content</div>"
