@@ -1,8 +1,14 @@
 tags = ['p', 'div']
 
+isFunction = (object) ->
+  getType = {}
+  return object &&
+         getType.toString.call(object) == '[object Function]';
+
 class HTML
   _createTagFunction: (tagName) =>
-    @[tagName] = (text) ->
+    @[tagName] = (text) =>
+      if isFunction(text) then text = text()
       "<#{tagName}>#{text}</#{tagName}>"
 
   constructor: ->
