@@ -37,9 +37,9 @@ describe 'fhtml', ->
 
   it 'can add an id with shorthand', ->
     html =
-      T.div '#idName',
+      T.div '#id-name',
             'content'
-    assert.equal html, "<div id='idName'>content</div>"
+    assert.equal html, "<div id='id-name'>content</div>"
 
   it 'can add multiple ids with shorthand', ->
     html =

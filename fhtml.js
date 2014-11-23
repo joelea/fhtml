@@ -26,10 +26,10 @@
 
   attributify = function(selector) {
     var attributes, classes, ids, _ref, _ref1;
-    classes = (_ref = selector.match(/\.\w+/g)) != null ? _ref.map(function(name) {
+    classes = (_ref = selector.match(/\.[\w\-]+/g)) != null ? _ref.map(function(name) {
       return name.slice(1);
     }) : void 0;
-    ids = (_ref1 = selector.match(/#\w+/g)) != null ? _ref1.map(function(name) {
+    ids = (_ref1 = selector.match(/#[\w\-]+/g)) != null ? _ref1.map(function(name) {
       return name.slice(1);
     }) : void 0;
     attributes = {};
